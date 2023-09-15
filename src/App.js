@@ -7,8 +7,8 @@ import Total from './components/total/total'
 class App extends Component {
   state = {
     items: [
-      {id:1, product:'Pen', price:2},
-      {id:2, product:'Book', price:10}
+      {id:1, product:'Pen', price:2,quantity:1},
+      {id:2, product:'Book', price:10,quantity:1}
     ]
   }
 
@@ -18,6 +18,17 @@ class App extends Component {
     items.splice(i, 1)
     this.setState({items: items})
   }
+  Addquantity = (id) => {
+    let items = this.state.items
+    console.log( items.filter((item)=>item.id===id?item.quantity=Number(item.quantity)+1:item.quantity) )
+    this.setState({items:items})
+  }
+  subquantity = (id) => {
+    let items = this.state.items
+    console.log( items.filter((item)=>item.id===id?item.quantity!==1?item.quantity=Number(item.quantity)-1:this.deleteItem(item.id):item.quantity) )
+    this.setState({items:items})
+  }
+
 
   addItem = (item) => {
     this.state.items.length > 0 ? (
@@ -34,7 +45,7 @@ class App extends Component {
       <div className="container">
         <h1>Product List React App</h1>
         <div className="table">
-          <Items items={this.state.items} del={this.deleteItem}/>
+          <Items items={this.state.items} del={this.deleteItem} add={this.Addquantity} minus={this.subquantity}/>
           <AddItem add={this.addItem}/>
           <Total items={this.state.items}/>
         </div>

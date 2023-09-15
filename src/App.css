@@ -45,7 +45,9 @@ body{
     font-size: 18px;
     text-align: center;
     border: 1px solid #08080833;
+    
 }
+
 .item .delete{
     background-color: #b90c0c;
     color: #e3e3e3;
